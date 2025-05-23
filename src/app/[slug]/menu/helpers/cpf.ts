@@ -34,3 +34,7 @@ export const isValidCpf = (cpf: string): boolean => {
 
   return secondVerifier === parseInt(cpf.charAt(10));
 };
+
+export const removeCpfPontuation = (cpf: string): string => {
+  return cpf.replace(/[\.\-]/g, "");
+};
