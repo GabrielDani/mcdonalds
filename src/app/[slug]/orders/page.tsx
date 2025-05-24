@@ -19,6 +19,7 @@ const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
       restaurant: { select: { name: true, avatarImageUrl: true } },
       orderProducts: { include: { product: true } },
     },
+    orderBy: { createdAt: "desc" },
   });
 
   return <OrderList orders={orders} />;
