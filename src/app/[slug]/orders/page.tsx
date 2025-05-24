@@ -16,7 +16,7 @@ const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
   const orders = await db.order.findMany({
     where: { customerCpf: removeCpfPontuation(cpf) },
     include: {
-      restaurant: { select: { name: true, avatarImageUrl: true } },
+      restaurant: { select: { name: true, avatarImageUrl: true, slug: true } },
       orderProducts: { include: { product: true } },
     },
     orderBy: { createdAt: "desc" },

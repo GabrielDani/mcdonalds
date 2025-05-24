@@ -1,6 +1,9 @@
+"use client";
+
 import { OrderStatus, Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +15,7 @@ interface OrderListProps {
     Prisma.OrderGetPayload<{
       include: {
         restaurant: {
-          select: { name: true; avatarImageUrl: true };
+          select: { name: true; avatarImageUrl: true; slug: true };
         };
         orderProducts: {
           include: {
@@ -32,10 +35,17 @@ const getStatusLabel = (orderStatus: OrderStatus) => {
 };
 
 const OrderList = ({ orders }: OrderListProps) => {
+  const redirectToHomePage = () => redirect(`/`);
+
   return (
     <div className="space-y-6 p-6">
       {/* BOTÃO DE VOLTAR */}
-      <Button variant="secondary" className="rounded-full" size="icon">
+      <Button
+        variant="secondary"
+        className="rounded-full"
+        size="icon"
+        onClick={redirectToHomePage}
+      >
         <ChevronLeftIcon />
       </Button>
 
