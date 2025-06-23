@@ -37,7 +37,7 @@ const HomePage = async () => {
               </p>
             </div>
             <a
-              href={`/restaurants/${restaurant.slug}`}
+              href={`/${restaurant.slug}`}
               className="mt-auto inline-block rounded-lg bg-yellow-500 py-2 text-center font-medium text-white transition hover:bg-yellow-600"
             >
               Ver cardápio
