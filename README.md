@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Sobre o Projeto
 
-## Getting Started
+Este projeto é uma aplicação web desenvolvida com **Next.js**, **Prisma** e **PostgreSQL**, que exibe informações sobre unidades do McDonald's.
 
-First, run the development server:
+**Importante:** As informações apresentadas são fictícias e foram criadas para fins educacionais e demonstrativos. Nenhuma das unidades exibidas é real, e os dados não correspondem a estabelecimentos reais do McDonald's.
+
+---
+
+## 🌐 Acesse a Aplicação
+
+A aplicação está hospedada e disponível para acesso público no seguinte link:
+
+🔗 [https://mcdonalds-gabrieldani.vercel.app/](https://mcdonalds-gabrieldani.vercel.app/)
+
+---
+
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework React para construção de interfaces de usuário.
+- **Prisma**: ORM para Node.js, facilitando a interação com o banco de dados.
+- **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional.
+- **Tailwind CSS**: Framework utilitário para estilização rápida e responsiva.
+
+---
+
+## Pré-requisitos
+
+Antes de rodar o projeto localmente, é necessário instalar algumas ferramentas:
+
+### 1. Node.js
+
+O Node.js é necessário para executar o ambiente de desenvolvimento e instalar dependências.
+
+#### Instalação no Windows
+
+1. Acesse o site oficial do Node.js: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+2. Baixe o instalador recomendado para o seu sistema operacional.
+3. Execute o instalador e siga as instruções na tela.
+
+Após a instalação, verifique se o Node.js foi instalado corretamente:
+
+```bash
+node -v
+npm -v
+```
+
+### 2. PostgreSQL
+
+O PostgreSQL é o banco de dados utilizado no projeto.
+
+#### Instalação no Windows
+
+1. Acesse o site oficial do PostgreSQL: [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/)
+2. Baixe o instalador para Windows.
+3. Execute o instalador e siga as instruções na tela. Durante a instalação, defina a senha do superusuário (geralmente "postgres").
+4. Após a instalação, abra o pgAdmin (ferramenta gráfica para administração do PostgreSQL) e crie um novo banco de dados chamado `mcdonalds_db`.
+
+---
+
+## Configuração do Ambiente
+
+### 1. Clonando o Repositório
+
+Clone o repositório para sua máquina local:
+
+```bash
+git clone https://github.com/GabrielDani/mcdonalds.git
+cd mcdonalds
+```
+
+### 2. Instalando Dependências
+
+Instale as dependências do projeto:
+
+```bash
+npm install
+```
+
+### 3. Configurando o Banco de Dados
+
+Crie um arquivo `.env` na raiz do projeto com a seguinte variável de ambiente:
+
+```env
+DATABASE_URL=postgresql://<usuário>:<senha>@localhost:5432/mcdonalds_db?schema=public
+```
+
+Substitua `<usuário>` e `<senha>` pelas credenciais do seu banco de dados PostgreSQL.
+
+### 4. Executando as Migrations
+
+Para configurar o banco de dados com as tabelas necessárias, execute:
+
+```bash
+npx prisma migrate dev
+```
+
+### 5. Populando o Banco de Dados (Seed)
+
+Para popular o banco de dados com dados iniciais, execute:
+
+```bash
+npx prisma db seed
+```
+
+---
+
+## Executando o Projeto
+
+Para rodar o servidor de desenvolvimento, execute:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O projeto estará disponível em [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura do Projeto
 
-## Learn More
+- `prisma/`: Contém o arquivo `schema.prisma` e o script de seed.
+- `src/`: Contém os componentes e páginas da aplicação.
+- `public/`: Contém arquivos estáticos como imagens.
+- `tailwind.config.ts`: Configuração do Tailwind CSS.
+- `tsconfig.json`: Configuração do TypeScript.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+O projeto está hospedado na Vercel. Para realizar o deploy:
 
-## Deploy on Vercel
+1. Acesse [https://vercel.com](https://vercel.com) e crie uma conta ou faça login.
+2. Clique em "New Project" e conecte seu repositório do GitHub.
+3. Durante a configuração, defina a variável de ambiente `DATABASE_URL` com a URL de conexão do seu banco de dados PostgreSQL.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contribuindo
+
+1. Faça um fork deste repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Faça suas alterações e commit (`git commit -am 'Add nova-feature'`).
+4. Push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
+
+---
