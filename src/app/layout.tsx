@@ -28,13 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`flex min-h-screen flex-col ${poppins.className} antialiased`}
+      >
         <CartProvider>
-          <div className="flex min-h-screen flex-col gap-5">
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <main className="flex-1">{children}</main>
         </CartProvider>
+        <Footer />
         <Toaster />
       </body>
     </html>

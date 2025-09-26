@@ -1,4 +1,4 @@
-import getRestaurants from "@/actions/restaurants/get";
+import { getRestaurants } from "@/actions/restaurants/get";
 import { RestaurantCard } from "@/components/ui/restaurant-card";
 
 export default async function HomePage() {
