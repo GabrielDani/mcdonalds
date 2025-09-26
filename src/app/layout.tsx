@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 
+import Footer from "@/components/shared/footer";
+
 import { CartProvider } from "./[slug]/menu/context/cart";
 
 const poppins = Poppins({
@@ -12,8 +14,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Dani | MC Donalds",
-  description: "Projeto MC Donalds",
+  title: "MC Donalds",
+  description: "Projeto MC Donalds desenvolvido por Gabriel Dani de Azevedo",
   icons: {
     icon: "/favicon.png",
   },
@@ -27,7 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          <div className="flex min-h-screen flex-col gap-5">
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </CartProvider>
         <Toaster />
       </body>
     </html>
