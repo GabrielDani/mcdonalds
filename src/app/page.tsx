@@ -1,8 +1,8 @@
+import getRestaurants from "@/actions/restaurants/get";
 import { RestaurantCard } from "@/components/ui/restaurant-card";
-import { db } from "@/lib/prisma";
 
 export default async function HomePage() {
-  const restaurants: Restaurant[] = await db.restaurant.findMany();
+  const restaurants: Restaurant[] = await getRestaurants();
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 p-6">
