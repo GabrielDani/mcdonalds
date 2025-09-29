@@ -56,51 +56,58 @@ const OrderList = ({ orders }: OrderListProps) => {
       </div>
 
       {/* PEDIDOS */}
-      {orders.map((order) => (
-        // CARD
-        <Card key={order.id}>
-          <CardContent className="space-y-4 p-5">
-            {/* STATUS */}
-            <div
-              className={`w-fit rounded-full px-2 py-1 text-xs font-semibold ${order.status === OrderStatus.FINISHED ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"}`}
-            >
-              {getStatusLabel(order.status)}
-            </div>
-            {/* RESTAURANTE */}
-            <div className="flex items-center gap-2">
-              <div className="relative h-5 w-5">
-                <Image
-                  src={order.restaurant.avatarImageUrl}
-                  alt={order.restaurant.name}
-                  fill
-                  className="rounded-lg"
-                />
+      {orders.map((order) => {
+        const {
+          status,
+          total_in_cents: price,
+          restaurant,
+          orderProducts,
+        } = order;
+        const { name: restaurantName, avatarImageUrl: restaurantAvatar } =
+          restaurant;
+        return (
+          // CARD
+          <Card key={order.id}>
+            <CardContent className="space-y-4 p-5">
+              {/* STATUS */}
+              <div
+                className={`w-fit rounded-full px-2 py-1 text-xs font-semibold ${status === OrderStatus.FINISHED ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"}`}
+              >
+                {getStatusLabel(status)}
               </div>
-              <p className="text-sm font-semibold">{order.restaurant.name}</p>
-            </div>
-            <Separator />
-
-            {/* PEDIDO */}
-            {order.orderProducts.map((orderProduct) => (
-              // PRODUTO
-              <div key={orderProduct.id} className="flex flex-col">
-                <p className="text-sm font-semibold">
-                  {orderProduct.product.name}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {orderProduct.quantity}x
-                </p>
+              {/* RESTAURANTE */}
+              <div className="flex items-center gap-2">
+                <div className="relative h-5 w-5">
+                  <Image
+                    src={restaurantAvatar}
+                    alt={restaurantName}
+                    fill
+                    className="rounded-lg"
+                  />
+                </div>
+                <p className="text-sm font-semibold">{restaurantName}</p>
               </div>
-            ))}
-            <Separator />
+              <Separator />
 
-            {/* TOTAL */}
-            <p className="text-sm font-medium">
-              {formatCurrency(order.total_in_cents)}
-            </p>
-          </CardContent>
-        </Card>
-      ))}
+              {/* PEDIDO */}
+              {orderProducts.map((orderProduct) => {
+                const { id, product, quantity } = orderProduct;
+                return (
+                  // PRODUTO
+                  <div key={id} className="flex flex-col">
+                    <p className="text-sm font-semibold">{product.name}</p>
+                    <p className="text-xs text-muted-foreground">{quantity}x</p>
+                  </div>
+                );
+              })}
+              <Separator />
+
+              {/* TOTAL */}
+              <p className="text-sm font-medium">{formatCurrency(price)}</p>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 };
