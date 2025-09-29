@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { db } from "@/lib/prisma";
+import { getRestaurantBySlug } from "@/actions/restaurants/get";
+import { isConsumptionMethodValid } from "@/lib/utils";
 
 import RestaurantCategories from "./components/categories";
 import RestaurantHeader from "./components/header";
@@ -10,10 +11,6 @@ interface RestaurantMenuPageProps {
   searchParams: Promise<{ consumptionMethod: string }>;
 }
 
-const isConsumptionMethodValid = (consumptionMethod: string) => {
-  return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
-};
-
 const RestaurantMenuPage = async ({
   params,
   searchParams,
@@ -22,10 +19,10 @@ const RestaurantMenuPage = async ({
   const { consumptionMethod } = await searchParams;
 
   if (!isConsumptionMethodValid(consumptionMethod)) return notFound();
-  const restaurant = await db.restaurant.findUnique({
-    where: { slug },
-    include: { menuCategories: { include: { products: true } } },
-  });
+  const restaurant: RestaurantWithMenus | null = await getRestaurantBySlug(
+    slug,
+    true,
+  );
   if (!restaurant) return notFound();
 
   return (

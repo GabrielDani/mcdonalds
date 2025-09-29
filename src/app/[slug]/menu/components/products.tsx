@@ -27,7 +27,7 @@ const Products = ({ products }: ProductsProps) => {
           {/* ESQUERDA */}
           <div>
             <h3 className="text-sm font-semibold">{product.name}</h3>
-            <p className="line-clamp-2 text-sm text-muted-foreground">
+            <p className="line-clamp-2 max-w-2xl text-sm text-muted-foreground">
               {product.description}
             </p>
             <p className="pt-3 text-sm font-semibold">
