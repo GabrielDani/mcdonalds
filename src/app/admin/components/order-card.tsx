@@ -1,11 +1,11 @@
 "use client";
 
-import { OrderStatus } from "@prisma/client";
 import { useState } from "react";
 
 import { updateOrderStatus } from "@/actions/order/update";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { OrderStatus } from "@/generated/prisma";
 import { formatCurrency } from "@/helpers/format-currency";
 import { cn } from "@/lib/utils";
 

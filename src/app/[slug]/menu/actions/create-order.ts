@@ -1,8 +1,8 @@
 "use server";
 
-import { ConsumptionMethod } from "@prisma/client";
 import { redirect } from "next/navigation";
 
+import { ConsumptionMethod } from "@/generated/prisma";
 import { db } from "@/lib/prisma";
 
 import { removeCpfPontuation } from "../helpers/cpf";

@@ -1,7 +1,6 @@
 "use server";
 
-import { OrderStatus } from "@prisma/client";
-
+import { OrderStatus } from "@/generated/prisma";
 import { db } from "@/lib/prisma";
 
 export async function updateOrderStatus(orderId: number, status: OrderStatus) {

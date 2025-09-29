@@ -1,6 +1,5 @@
 "use client";
 
-import { Restaurant } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Restaurant } from "@/generated/prisma";
 
 interface RestaurantHeaderProps {
   restaurant: Pick<Restaurant, "name" | "coverImageUrl">;

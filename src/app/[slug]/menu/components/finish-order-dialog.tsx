@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ConsumptionMethod } from "@prisma/client";
 import { Loader2Icon } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useTransition } from "react";
@@ -29,6 +28,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { ConsumptionMethod } from "@/generated/prisma";
 
 import { createOrder } from "../actions/create-order";
 import { CartContext } from "../context/cart";

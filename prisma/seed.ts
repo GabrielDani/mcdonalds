@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@/generated/prisma";
 
 const prismaClient = new PrismaClient();
 
