@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { RestaurantOrders } from "@/app/admin/components/restaurant-orders";
 import { db } from "@/lib/prisma";
 
@@ -7,7 +9,7 @@ type Props = {
 
 export default async function AdminPage({ searchParams }: Props) {
   const { slug } = await searchParams;
-  if (!slug) <>Não contém slug</>;
+  if (!slug) return notFound();
 
   const restaurant: RestaurantWithOrders | null = await db.restaurant.findFirst(
     {
@@ -26,7 +28,7 @@ export default async function AdminPage({ searchParams }: Props) {
     },
   );
 
-  if (!restaurant) return <>Restaurante não encontrado</>;
+  if (!restaurant) return notFound();
 
   return <RestaurantOrders restaurant={restaurant} />;
 }

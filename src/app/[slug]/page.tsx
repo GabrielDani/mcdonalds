@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getRestaurantBySlug } from "@/actions/restaurants/get";
@@ -22,6 +23,19 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
       <div className="flex flex-col items-center gap-2">
         <Image src={avatar} alt={name} width={82} height={82} priority />
         <h2 className="font-semibold">{name}</h2>
+      </div>
+
+      <div className="flex flex-col gap-1 text-center">
+        <Link
+          href={`/admin?slug=${slug}`}
+          className="text-xs text-muted-foreground hover:underline"
+        >
+          Ver todos os pedidos
+        </Link>
+        <p className="text-xs text-muted-foreground">
+          Esta página é apenas para testes: qualquer usuário pode visualizar e
+          alterar o status dos pedidos.
+        </p>
       </div>
 
       {/* BEM-VINDO */}
