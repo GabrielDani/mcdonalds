@@ -16,10 +16,12 @@ const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
   const [error, setError] = useState(false);
   const router = useRouter();
 
+  const { name, coverImageUrl: image } = restaurant;
+
   const handleBackClick = () => router.back();
 
   return (
-    <div className="relative h-[250px] w-full">
+    <div className="relative h-[250px] w-full md:h-[500px] lg:h-[700px]">
       <Button
         variant="secondary"
         size="icon"
@@ -29,15 +31,15 @@ const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
         <ChevronLeftIcon />
       </Button>
       <Image
-        src={
-          error ? "/mcdonalds-banner-fallback.png" : restaurant.coverImageUrl
-        }
-        alt={restaurant.name}
+        src={error ? "/mcdonalds-banner-fallback.png" : image}
+        alt={name}
         fill
-        className="object-cover"
+        className="object-cover object-center"
         priority
+        sizes="100vw"
         onError={() => setError(true)}
       />
+
       <Button
         variant="secondary"
         size="icon"
